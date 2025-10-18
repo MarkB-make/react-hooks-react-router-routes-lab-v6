@@ -1,35 +1,20 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import { RouterProvider, createMemoryRouter} from "react-router-dom";
+import { RouterProvider, createMemoryRouter, Outlet} from "react-router-dom";
 import routes from "../routes";
+import { actors } from "../data";
 
-const actors = [
+const testRoutes = [
   {
-    name: "Benedict Cumberbatch",
-    movies: ["Doctor Strange", "The Imitation Game", "Black Mass"],
-  },
-  {
-    name: "Justin Timberlake",
-    movies: ["Trolls", "Friends with Benefits", "The Social Network"],
-  },
-  {
-    name: "Anna Kendrick",
-    movies: ["Pitch Perfect", "Into The Wood"],
-  },
-  {
-    name: "Tom Cruise",
-    movies: [
-      "Jack Reacher: Never Go Back",
-      "Mission Impossible 4",
-      "War of the Worlds",
-    ],
+    path: "/actors",
+    element: <Outlet />,
   },
 ];
 
 const router = createMemoryRouter(routes, {
   initialEntries: [`/actors`],
   initialIndex: 0
-})
+});
 
 test("renders without any errors", () => {
   const errorSpy = vi.spyOn(global.console, "error");

@@ -1,9 +1,15 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import { RouterProvider, createMemoryRouter} from "react-router-dom";
+import { RouterProvider, createMemoryRouter, Outlet} from "react-router-dom";
 import routes from "../routes";
 
-const router = createMemoryRouter(routes)
+const testRoutes = [
+  {
+    path: "/",
+    element: <Outlet />,
+  },
+];
+const router = createMemoryRouter(routes);
 
 test("renders 'Home Page' inside of an <h1 />", () => {
   render(<RouterProvider router={router}/>);
